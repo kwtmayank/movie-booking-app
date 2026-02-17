@@ -1,26 +1,21 @@
-package com.example.moviebooking.controller;
+package com.example.moviebooking.service;
 
 import com.example.moviebooking.entity.City;
 import com.example.moviebooking.repository.CityRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-class ReferenceDataControllerTest {
+class ReferenceDataServiceTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private ReferenceDataService referenceDataService;
 
     @Autowired
     private CityRepository cityRepository;
@@ -36,20 +31,23 @@ class ReferenceDataControllerTest {
                 createCity("Chennai", "India", 5),
                 createCity("Pune", "India", 6),
                 createCity("Kolkata", "India", 7),
-                createCity("London", "UK", 1)
+                createCity("Paris", "France", 1)
         ));
     }
 
     @Test
-    void getCitiesReturnsTopIndianCities() throws Exception {
-        mockMvc.perform(get("/api/cities"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0]").value("Mumbai"))
-                .andExpect(jsonPath("$[1]").value("Delhi"))
-                .andExpect(jsonPath("$[2]").value("Bengaluru"))
-                .andExpect(jsonPath("$[3]").value("Hyderabad"))
-                .andExpect(jsonPath("$[4]").value("Chennai"))
-                .andExpect(jsonPath("$[5]").value("Pune"));
+    void getTopIndianCitiesReturnsFirstSixIndianCities() {
+        List<String> cities = referenceDataService.getTopIndianCities();
+
+        assertThat(cities).hasSize(6);
+        assertThat(cities).containsExactly(
+                "Mumbai",
+                "Delhi",
+                "Bengaluru",
+                "Hyderabad",
+                "Chennai",
+                "Pune"
+        );
     }
 
     private City createCity(String name, String country, int order) {

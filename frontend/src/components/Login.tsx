@@ -9,6 +9,10 @@ type UserProfile = {
   email: string;
   name: string;
   pictureUrl: string | null;
+  dateOfBirth: string | null;
+  address: string | null;
+  city: string | null;
+  phoneNumber: string | null;
 };
 
 type AuthResponse = {

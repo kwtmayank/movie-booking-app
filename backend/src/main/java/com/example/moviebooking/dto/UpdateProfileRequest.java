@@ -2,11 +2,7 @@ package com.example.moviebooking.dto;
 
 import java.time.LocalDate;
 
-public record UserProfile(
-        Long id,
-        String email,
-        String name,
-        String pictureUrl,
+public record UpdateProfileRequest(
         LocalDate dateOfBirth,
         String address,
         String city,

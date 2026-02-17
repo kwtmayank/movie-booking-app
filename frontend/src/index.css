@@ -1,1 +1,269 @@
 @import "tailwindcss";
+
+:root {
+  --app-bg: radial-gradient(circle at 15% 15%, #ffe8cf 0%, #f8ddce 30%, #e9eaf6 70%, #dce7f6 100%);
+  --panel-bg: rgba(255, 255, 255, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.8);
+  --tile-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(244, 248, 255, 0.88));
+  --tile-border: rgba(76, 99, 133, 0.16);
+  --text-main: #1d1f3a;
+  --text-muted: #5e607a;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background: var(--app-bg);
+  min-height: 100vh;
+  color: var(--text-main);
+}
+
+.home-screen {
+  min-height: calc(100vh - 72px);
+}
+
+.profile-screen {
+  min-height: calc(100vh - 72px);
+}
+
+.city-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 26px;
+  box-shadow: 0 20px 50px rgba(27, 39, 74, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.profile-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 26px;
+  box-shadow: 0 20px 50px rgba(27, 39, 74, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.profile-back-btn {
+  border-radius: 999px;
+}
+
+.profile-card {
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(232, 240, 255, 0.85));
+  border: 1px solid rgba(120, 140, 175, 0.2);
+  box-shadow: 0 12px 24px rgba(40, 54, 83, 0.12);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar-wrap {
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 18px rgba(39, 51, 79, 0.2);
+}
+
+.profile-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "DM Serif Display", serif;
+  font-size: 2rem;
+  color: #1d2b4f;
+  background: linear-gradient(145deg, #ffe2c2, #dbe7ff);
+}
+
+.profile-details {
+  min-width: 0;
+}
+
+.profile-name {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.9rem;
+  line-height: 1.05;
+}
+
+.profile-email {
+  color: var(--text-muted);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.profile-form {
+  border-top: 1px solid rgba(107, 125, 161, 0.2);
+  padding-top: 1.05rem;
+}
+
+.profile-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #5a5f7e;
+  font-weight: 700;
+}
+
+.profile-input {
+  border-radius: 12px;
+  border: 1px solid rgba(117, 135, 168, 0.28);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.profile-input:focus {
+  border-color: rgba(83, 107, 149, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(139, 168, 219, 0.22);
+}
+
+.profile-save-btn {
+  border-radius: 999px;
+}
+
+.profile-save-message {
+  color: #2d5b36;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.profile-error-message {
+  color: #a43737;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.home-eyebrow {
+  color: #ac4f2e;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.home-title {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  line-height: 1.08;
+  margin: 0;
+}
+
+.home-subtitle {
+  color: var(--text-muted);
+  max-width: 680px;
+  font-size: 1.02rem;
+}
+
+.home-state {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.city-tile {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(16, 24, 44, 0.02), rgba(16, 24, 44, 0.28)),
+    linear-gradient(140deg, rgba(255, 239, 222, 0.95), rgba(214, 230, 255, 0.92));
+  border: 1px solid var(--tile-border);
+  border-radius: 20px;
+  padding: 0.9rem 0.9rem;
+  min-height: 130px;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 12px 24px rgba(38, 56, 89, 0.15);
+  animation: tile-in 380ms ease both;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, filter 180ms ease;
+  cursor: pointer;
+}
+
+.city-tile:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(172, 79, 46, 0.45);
+  box-shadow: 0 20px 36px rgba(30, 44, 74, 0.22);
+  filter: saturate(1.06);
+}
+
+.city-tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff8f60 0%, #ffc880 45%, #8cb7ff 100%);
+}
+
+.city-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 86% 14%, rgba(255, 214, 176, 0.65), rgba(255, 214, 176, 0) 42%),
+    radial-gradient(circle at 16% 80%, rgba(163, 192, 245, 0.45), rgba(163, 192, 245, 0) 38%);
+  pointer-events: none;
+}
+
+.city-tile-name {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.34rem;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+  color: #1b1f36;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  max-width: calc(100% - 3rem);
+}
+
+.city-tile-name::after {
+  content: "Now Booking";
+  display: block;
+  margin-top: 0.35rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(53, 60, 92, 0.66);
+  font-weight: 700;
+}
+
+.city-tile-media {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(119, 137, 170, 0.22);
+  box-shadow: 0 6px 14px rgba(40, 56, 89, 0.12);
+}
+
+@media (max-width: 576px) {
+  .city-tile {
+    min-height: 118px;
+  }
+
+  .city-tile-name {
+    font-size: 1.2rem;
+  }
+}
+
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -3,7 +3,11 @@ import { useAppSelector } from '../hooks/redux';
 import { useAppDispatch } from '../hooks/redux';
 import { logout } from '../store/authSlice';
 
-function Header() {
+type HeaderProps = {
+  onProfileClick: () => void;
+};
+
+function Header({ onProfileClick }: HeaderProps) {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const userPictureUrl = useAppSelector((state) => state.auth.userPictureUrl);
@@ -32,7 +36,7 @@ function Header() {
               />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item>Profile</Dropdown.Item>
+              <Dropdown.Item onClick={onProfileClick}>Profile</Dropdown.Item>
               <Dropdown.Item onClick={handleLogout} className="text-danger">
                 Logout
               </Dropdown.Item>

@@ -27,7 +27,7 @@ public class GoogleTokenVerifierService {
         GoogleIdToken googleIdToken;
         try {
             googleIdToken = verifier.verify(idToken);
-        } catch (GeneralSecurityException | IOException ex) {
+        } catch (GeneralSecurityException | IOException | RuntimeException ex) {
             throw new InvalidGoogleTokenException("Unable to verify Google token", ex);
         }
 

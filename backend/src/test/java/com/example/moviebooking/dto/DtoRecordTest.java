@@ -3,6 +3,7 @@ package com.example.moviebooking.dto;
 import com.example.moviebooking.service.GoogleUserInfo;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +12,16 @@ class DtoRecordTest {
 
     @Test
     void authResponseRecordStoresValues() {
-        UserProfile userProfile = new UserProfile(1L, "user@example.com", "User", "https://pic");
+        UserProfile userProfile = new UserProfile(
+                1L,
+                "user@example.com",
+                "User",
+                "https://pic",
+                LocalDate.of(1995, 5, 10),
+                "Address",
+                "Mumbai",
+                "+91-99999"
+        );
         AuthResponse authResponse = new AuthResponse("token", "Bearer", 3600L, userProfile);
 
         assertThat(authResponse.accessToken()).isEqualTo("token");
@@ -35,13 +45,26 @@ class DtoRecordTest {
     @Test
     void googleLoginRequestAndUserProfileRecordsStoreValues() {
         GoogleLoginRequest loginRequest = new GoogleLoginRequest("id-token");
-        UserProfile userProfile = new UserProfile(9L, "profile@example.com", "Profile User", null);
+        UserProfile userProfile = new UserProfile(
+                9L,
+                "profile@example.com",
+                "Profile User",
+                null,
+                LocalDate.of(2000, 1, 1),
+                "Some address",
+                "Pune",
+                "+91-88888"
+        );
 
         assertThat(loginRequest.idToken()).isEqualTo("id-token");
         assertThat(userProfile.id()).isEqualTo(9L);
         assertThat(userProfile.email()).isEqualTo("profile@example.com");
         assertThat(userProfile.name()).isEqualTo("Profile User");
         assertThat(userProfile.pictureUrl()).isNull();
+        assertThat(userProfile.dateOfBirth()).isEqualTo(LocalDate.of(2000, 1, 1));
+        assertThat(userProfile.address()).isEqualTo("Some address");
+        assertThat(userProfile.city()).isEqualTo("Pune");
+        assertThat(userProfile.phoneNumber()).isEqualTo("+91-88888");
     }
 
     @Test

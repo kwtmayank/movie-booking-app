@@ -44,7 +44,16 @@ public class AuthService {
                 accessToken,
                 "Bearer",
                 jwtService.getExpiresInSeconds(),
-                new UserProfile(user.getId(), user.getEmail(), user.getName(), user.getPictureUrl())
+                new UserProfile(
+                        user.getId(),
+                        user.getEmail(),
+                        user.getName(),
+                        user.getPictureUrl(),
+                        user.getDateOfBirth(),
+                        user.getAddress(),
+                        user.getCity(),
+                        user.getPhoneNumber()
+                )
         );
     }
 
