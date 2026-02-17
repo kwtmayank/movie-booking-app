@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:moviedb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8080
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000,http://localhost:5173,http://127.0.0.1:5173
+  auth:
+    google:
+      client-id: 1089278175479-hqk5tk4ketdrajkppsc27gnvvse3gelg.apps.googleusercontent.com
+    jwt:
+      secret: my-name-is-mayank-kumawat-i-work-in-barclays
+      expires-in-seconds: 3600
